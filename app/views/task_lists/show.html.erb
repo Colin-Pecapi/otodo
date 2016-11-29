@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p><u>Name</u> : <%= @task_list.name%></p>
+
+<p><u>Description</u> : <%= @task_list.description%></p>
+
+<p><%= link_to 'Show', @task_list %></p>
+<span><%= link_to 'Edit', edit_task_list_path(@task_list) %></span>
+<span><%= link_to 'Destroy', @task_list, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+
+<p>
+<%= link_to 'Back', task_lists_path %>
+</p>
