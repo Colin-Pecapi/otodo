@@ -1,15 +1,18 @@
 class TaskListsController < ApplicationController
   before_action :set_task_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_task
+  
 
   # GET /task_lists
   # GET /task_lists.json
   def index
-    @task_lists = TaskList.all
+    @task_lists = TaskList.all.order(:name)
   end
 
   # GET /task_lists/1
   # GET /task_lists/1.json
   def show
+  #  @tasks = TaskList.tasks.all.order(:name)
   end
 
   # GET /task_lists/new
@@ -65,6 +68,11 @@ class TaskListsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task_list
       @task_list = TaskList.find(params[:id])
+    end
+    
+    
+    def set_task
+      # @tasks = Task.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

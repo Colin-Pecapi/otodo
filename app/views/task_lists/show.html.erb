@@ -2,12 +2,47 @@
 
 <p><u>Name</u> : <%= @task_list.name%></p>
 
-<p><u>Description</u> : <%= @task_list.description%></p>
+<p><u>Description</u> : <%= @task_list.description%></p
+<p><u>Tasks</u> : </p>
+<%
+puts "rrtr"
+print "<p>toto #{@tasks} tata </p>"
+#@tasks = @task_list.tasks.all.order(:name)
 
-<p><%= link_to 'Show', @task_list %></p>
+%>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_list.tasks.each do |task| %>
+      <tr>
+        <td><%= task.name%></td>
+        <td><%= task.description%></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_list_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  <p>after tab
+  <span>
+<%= link_to 'Create new task', {:action=>"new", :controller=>"tasks", :task_list_id=>@task_list.id} %>
+</span>
+</p>
+
+<p>
 <span><%= link_to 'Edit', edit_task_list_path(@task_list) %></span>
 <span><%= link_to 'Destroy', @task_list, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-
+</p>
 <p>
 <%= link_to 'Back', task_lists_path %>
 </p>
